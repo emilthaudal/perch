@@ -40,7 +40,17 @@ node scripts/build.js   # → dist/chrome/, dist/firefox/, and a .zip of each
 ```
 
 - **Chrome (or Edge, Brave):** open `chrome://extensions`, turn on Developer mode, choose **Load unpacked** and pick `dist/chrome`. It stays installed. After a rebuild, click the reload arrow on the Perch card.
-- **Firefox:** release Firefox only permanently installs add-ons signed by Mozilla. Signing is free and needs no store listing. Create API keys at addons.mozilla.org (Developer Hub → Manage API Keys), then run `npx web-ext sign --source-dir dist/firefox --channel unlisted --api-key … --api-secret …` and open the `.xpi` it produces in Firefox. For quick tests, `about:debugging` → This Firefox → **Load Temporary Add-on** → `dist/firefox/manifest.json` works until Firefox restarts.
+- **Firefox:** release Firefox only permanently installs add-ons signed by Mozilla. Perch is signed as an *unlisted* add-on, so it isn't in Mozilla's public store. The API keys live in `~/.config/perch/amo.env` (`WEB_EXT_API_KEY=…` and `WEB_EXT_API_SECRET=…`, chmod 600). To release a new version:
+  1. Bump `version` in `extension/manifest.json`. Mozilla rejects a version it has already signed.
+  2. Build and sign:
+     ```sh
+     node scripts/build.js
+     set -a; . ~/.config/perch/amo.env; set +a
+     npx web-ext sign --source-dir dist/firefox --artifacts-dir dist/signed --channel unlisted
+     ```
+  3. Install the `.xpi` from `dist/signed/`, or download it from addons.mozilla.org → Developer Hub → My Add-ons → Perch.
+
+  For quick tests, `about:debugging` → This Firefox → **Load Temporary Add-on** → `dist/firefox/manifest.json` works until Firefox restarts.
 
 The build gives the page-world script its own copy of `defaults.js` (`defaults-page.js`). Chrome injects a given file only once per page across both worlds, and without the copy the content script ran with no settings.
 

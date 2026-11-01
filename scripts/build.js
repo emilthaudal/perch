@@ -38,18 +38,24 @@ const targets = {
     browser_specific_settings: {
       gecko: {
         id: 'perch@emilthaudal.dev',
-        // First Firefox with "world": "MAIN" content scripts.
-        strict_min_version: '128.0',
+        // 128 added "world": "MAIN" content scripts; 140 is the first desktop
+        // release that understands data_collection_permissions below.
+        strict_min_version: '140.0',
         // Required by addons.mozilla.org for signing: Perch collects nothing.
         data_collection_permissions: { required: ['none'] },
       },
+      // Firefox for Android supports data_collection_permissions from 142.
+      gecko_android: { strict_min_version: '142.0' },
     },
   }),
 };
 
-fs.rmSync(dist, { recursive: true, force: true });
+// Replace only this script's own outputs: dist/signed/ holds Mozilla-signed
+// .xpi files that can't be rebuilt locally.
 for (const [name, adapt] of Object.entries(targets)) {
   const out = path.join(dist, name);
+  fs.rmSync(out, { recursive: true, force: true });
+  fs.rmSync(path.join(dist, `perch-${name}.zip`), { force: true });
   fs.cpSync(src, out, { recursive: true, filter: (p) => !path.basename(p).startsWith('.') });
   const manifest = adapt(separatePageDefaults(base, out));
   fs.writeFileSync(path.join(out, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
