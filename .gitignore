@@ -1,0 +1,9 @@
+.DS_Store
+build/
+dist/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Captured X responses contain other people's posts; keep them local.
+response*.json

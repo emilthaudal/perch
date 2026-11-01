@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perch</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Perch</h1>
+  <form id="settings">
+    <label class="row">
+      <span>Sort replies by</span>
+      <select name="sortMode">
+        <option value="likes">Likes</option>
+        <option value="engagement">Likes + replies + reposts</option>
+        <option value="off">X's order</option>
+      </select>
+    </label>
+
+    <label class="row">
+      <span>Blue-check replies need</span>
+      <select name="bluePenalty">
+        <option value="1">the same likes</option>
+        <option value="2">2× the likes</option>
+        <option value="3">3× the likes</option>
+        <option value="5">5× the likes</option>
+        <option value="10">10× the likes</option>
+        <option value="bottom">to go last</option>
+      </select>
+    </label>
+
+    <label class="row"><span>People I follow first</span><input type="checkbox" name="boostFollowing"></label>
+    <label class="row"><span>Remove ads</span><input type="checkbox" name="removeAds"></label>
+    <label class="row"><span>Open on Following</span><input type="checkbox" name="followingTab"></label>
+    <label class="row"><span>Hide "What's happening?"</span><input type="checkbox" name="hideComposer"></label>
+    <label class="row"><span>Perch styling</span><input type="checkbox" name="styling"></label>
+  </form>
+  <p class="hint">Sorting and ads apply to threads you open after a change.</p>
+  <script src="../src/defaults.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

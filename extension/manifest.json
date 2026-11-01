@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Perch",
+  "description": "A calmer X: replies ranked by likes, no ads, a Threads-style layout.",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "icons": {
+    "48": "images/icon-48.png",
+    "96": "images/icon-96.png",
+    "128": "images/icon-128.png",
+    "256": "images/icon-256.png",
+    "512": "images/icon-512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*", "https://mobile.x.com/*", "https://mobile.twitter.com/*"],
+      "js": ["src/defaults.js", "src/perch-core.js", "src/inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*", "https://mobile.x.com/*", "https://mobile.twitter.com/*"],
+      "js": ["src/defaults.js", "src/icon-data.js", "src/content.js"],
+      "css": ["styles/perch.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/defaults.js", "src/perch-core.js", "src/inject.js"],
+      "matches": ["https://x.com/*", "https://twitter.com/*", "https://mobile.x.com/*", "https://mobile.twitter.com/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "images/icon-48.png",
+      "32": "images/icon-64.png",
+      "48": "images/icon-96.png"
+    },
+    "default_title": "Perch"
+  }
+}

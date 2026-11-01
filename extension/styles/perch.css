@@ -1,0 +1,299 @@
+/*
+ * Perch: a calmer X. Everything is scoped to html.perch-style so the popup toggle
+ * can turn it off. X's class names are generated and change often, so these rules
+ * target data-testid, role and href, plus classes content.js adds:
+ *   .perch-solid   a translucent sticky header, made solid
+ *   .perch-hidden  a floating button in the bottom-right corner
+ *   html.perch-home / html.perch-hide-composer  route and setting flags
+ */
+
+html.perch-style {
+  --perch-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --perch-column: 680px;
+  --perch-rail: 72px;
+  /* Strong ease-out: starts fast, so feedback feels immediate. */
+  --perch-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html.perch-style body,
+html.perch-style [data-testid="primaryColumn"] {
+  font-family: var(--perch-font) !important;
+}
+
+/* ---------- Clutter ---------- */
+
+/* Right sidebar: trends, "Who to follow", Premium upsells, Grok. */
+html.perch-style [data-testid="sidebarColumn"] {
+  display: none !important;
+}
+
+/* Left nav entries nobody here asked for. */
+html.perch-style header[role="banner"] a[href="/i/grok"],
+html.perch-style header[role="banner"] a[href="/i/premium_sign_up"],
+html.perch-style header[role="banner"] a[href="/i/verified-orgs-signup"],
+html.perch-style header[role="banner"] a[href="/jobs"],
+html.perch-style header[role="banner"] a[href$="/communities"],
+html.perch-style header[role="banner"] a[href="/i/jf/creators/studio"],
+html.perch-style header[role="banner"] a[data-testid="premium-signup-tab"],
+html.perch-style header[role="banner"] a[data-testid="SideNav_NewTweet_Button"] {
+  display: none !important;
+}
+
+/* Grok buttons on posts, and the views and bookmark buttons in the action row. */
+html.perch-style article button[aria-label*="Grok"],
+html.perch-style article [role="group"] > div:has(> a[href$="/analytics"]),
+html.perch-style article [data-testid="bookmark"],
+html.perch-style article [data-testid="removeBookmark"] {
+  display: none !important;
+}
+
+/* Inline "Subscribe to Premium" style cells. */
+html.perch-style [data-testid="cellInnerDiv"]:has(a[href="/i/premium_sign_up"]),
+html.perch-style [data-testid="cellInnerDiv"]:has(a[href="/i/verified-choose"]) {
+  display: none !important;
+}
+
+/* Floating Grok and Chat bubbles. content.js finds them by position; the test ids
+   are a second net. */
+html.perch-style .perch-hidden,
+html.perch-style [data-testid="GrokDrawer"],
+html.perch-style [data-testid="chat-drawer-root"],
+html.perch-style [data-testid="DMDrawer"] {
+  display: none !important;
+}
+
+/* The "What's happening?" composer on the home timeline. content.js tags its
+   outermost wrapper, since the composer has no stable id of its own. */
+html.perch-style.perch-home.perch-hide-composer .perch-composer {
+  display: none !important;
+}
+
+/* ---------- The Perch bird instead of the X logo ---------- */
+
+/* content.js sets --perch-logo to the icon as a data: URL. */
+html.perch-style header[role="banner"] h1 a[href="/home"] svg,
+html.perch-style a[aria-label="X"][href="/home"] svg {
+  visibility: hidden;
+}
+
+html.perch-style header[role="banner"] h1 a[href="/home"] > div,
+html.perch-style a[aria-label="X"][href="/home"] > div {
+  background: var(--perch-logo) center / 32px 32px no-repeat;
+}
+
+/* ---------- Header: solid instead of see-through ---------- */
+
+html.perch-style .perch-solid {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background-color: var(--perch-bg, Canvas) !important;
+}
+
+/* ---------- Layout: icon rail beside a dead-center reading column ---------- */
+
+/*
+ * X's layout is a centered flex row: header (nav) + main. The nav is squeezed
+ * into an icon rail, and main gets a right margin the width of the rail, so the
+ * row is symmetric and the column sits exactly in the middle of the window.
+ *
+ * Nav structure (measured on x.com, Nov 2026):
+ *   header > div > div(position: fixed) > div > div(nav + account switcher)
+ * Desktop widths only; the phone layout has no side nav.
+ */
+@media (min-width: 1000px) {
+  html.perch-style div:has(> header[role="banner"]):has(> main[role="main"]) {
+    justify-content: center !important;
+  }
+
+  html.perch-style header[role="banner"],
+  html.perch-style header[role="banner"] > div,
+  html.perch-style header[role="banner"] > div > div,
+  html.perch-style header[role="banner"] > div > div > div,
+  html.perch-style header[role="banner"] > div > div > div > div,
+  html.perch-style header[role="banner"] nav {
+    width: var(--perch-rail) !important;
+    min-width: 0 !important;
+    flex-grow: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-items: center !important;
+  }
+
+  /* Icons only: hide nav labels and the name next to your avatar. */
+  html.perch-style header[role="banner"] nav a div[dir="ltr"],
+  html.perch-style [data-testid="SideNav_AccountSwitcher_Button"] > div:not(:first-child) {
+    display: none !important;
+  }
+
+  /* Links and the "More" button (a <button>) center their icon in the rail. */
+  html.perch-style header[role="banner"] nav > a,
+  html.perch-style header[role="banner"] nav > button {
+    align-items: center !important;
+    width: var(--perch-rail) !important;
+  }
+
+  html.perch-style header[role="banner"] nav > a > div,
+  html.perch-style header[role="banner"] nav > button > div {
+    align-self: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html.perch-style header[role="banner"] nav > button div[dir="ltr"] {
+    display: none !important;
+  }
+
+  html.perch-style main[role="main"] {
+    flex-grow: 0 !important;
+    width: var(--perch-column) !important;
+    margin-right: var(--perch-rail) !important;
+  }
+
+  html.perch-style main[role="main"] > div,
+  html.perch-style main[role="main"] > div > div {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* content.js tags the home timeline's 600px-capped wrapper, so posts use the
+   full column like they do in a thread. */
+html.perch-style .perch-full {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html.perch-style [data-testid="primaryColumn"] {
+  max-width: var(--perch-column) !important;
+  width: 100% !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+/* ---------- Tabs: a quiet underline ---------- */
+
+/*
+ * X draws a 4px bright-blue bar under the selected tab:
+ *   [role=tab] > div > div[dir] > div
+ * Make it a 2px line in the label's own text color (currentColor follows X's
+ * light, dim and dark themes). It mounts fresh on every tab switch and is never
+ * interrupted, so a one-shot keyframe grows it in from the center.
+ */
+html.perch-style [role="tablist"] [role="tab"] > div > div[dir] > div {
+  height: 2px !important;
+  background-color: currentColor !important;
+  border-radius: 2px !important;
+  transform-origin: center;
+  animation: perch-tab-in 200ms var(--perch-ease-out);
+}
+
+@keyframes perch-tab-in {
+  from {
+    transform: scaleX(0.6);
+    opacity: 0;
+  }
+}
+
+/* ---------- Press feedback ---------- */
+
+/* Pressable things scale down slightly, so the page feels like it heard you. */
+html.perch-style header[role="banner"] nav > a > div,
+html.perch-style header[role="banner"] nav > button > div,
+html.perch-style article [role="group"] button {
+  transition: transform 160ms var(--perch-ease-out);
+}
+
+html.perch-style header[role="banner"] nav > a:active > div,
+html.perch-style header[role="banner"] nav > button:active > div {
+  transform: scale(0.96);
+}
+
+html.perch-style article [role="group"] button:active {
+  transform: scale(0.94);
+}
+
+/* ---------- Posts ---------- */
+
+html.perch-style [data-testid="tweetText"] {
+  font-size: 15.5px !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.005em;
+}
+
+/* Author line: name in bold, handle and time quieter. */
+html.perch-style [data-testid="User-Name"] a[href^="/"] span {
+  font-weight: 600;
+}
+
+html.perch-style [data-testid="User-Name"] time,
+html.perch-style [data-testid="User-Name"] a[tabindex="-1"] span {
+  opacity: 0.7;
+}
+
+/* Blue checks stay visible but stop shouting. */
+html.perch-style [data-testid="icon-verified"] {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+/* Action row: compact, smaller and quieter than the post; full strength on hover. */
+html.perch-style article [role="group"] {
+  justify-content: flex-start !important;
+  gap: 10px;
+  max-width: none !important;
+  margin-top: 4px !important;
+  opacity: 0.55;
+  transition: opacity 150ms ease;
+}
+
+/* Hover only on real pointers; on touch, a tap would leave it stuck at full. */
+@media (hover: hover) and (pointer: fine) {
+  html.perch-style article:hover [role="group"] {
+    opacity: 1;
+  }
+}
+
+html.perch-style article [role="group"]:focus-within {
+  opacity: 1;
+}
+
+html.perch-style article [role="group"] > div {
+  flex: 0 0 auto !important;
+  justify-content: flex-start !important;
+}
+
+html.perch-style article [role="group"] svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+html.perch-style article [role="group"] span {
+  font-size: 12.5px !important;
+}
+
+/* Softer media corners. */
+html.perch-style article [data-testid="tweetPhoto"],
+html.perch-style article [data-testid="videoComponent"],
+html.perch-style article [data-testid="card.wrapper"] {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/* ---------- Reduced motion ---------- */
+
+/* Keep the opacity fades that aid comprehension; drop movement and scaling. */
+@media (prefers-reduced-motion: reduce) {
+  html.perch-style [role="tablist"] [role="tab"] > div > div[dir] > div {
+    animation: none !important;
+  }
+
+  html.perch-style header[role="banner"] nav > a > div,
+  html.perch-style header[role="banner"] nav > button > div,
+  html.perch-style article [role="group"] button {
+    transform: none !important;
+    transition: opacity 150ms ease !important;
+  }
+}

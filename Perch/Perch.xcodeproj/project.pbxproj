@@ -1,0 +1,943 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		49505DE83097324000F88BCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DE73097324000F88BCC /* AppDelegate.swift */; };
+		49505DEA3097324000F88BCC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DE93097324000F88BCC /* SceneDelegate.swift */; };
+		49505DED3097324000F88BCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49505DEB3097324000F88BCC /* LaunchScreen.storyboard */; };
+		49505DF03097324000F88BCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49505DEE3097324000F88BCC /* Main.storyboard */; };
+		49505DF93097324000F88BCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DF83097324000F88BCC /* AppDelegate.swift */; };
+		49505DFC3097324000F88BCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49505DFA3097324000F88BCC /* Main.storyboard */; };
+		49505E033097324000F88BCC /* Perch Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 49505E023097324000F88BCC /* Perch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49505E0D3097324000F88BCC /* Perch Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 49505E0C3097324000F88BCC /* Perch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		49505E123097324000F88BCC /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 49505DD73097323F00F88BCC /* Main.html */; };
+		49505E133097324000F88BCC /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 49505DD73097323F00F88BCC /* Main.html */; };
+		49505E143097324000F88BCC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49505DD93097323F00F88BCC /* Icon.png */; };
+		49505E153097324000F88BCC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49505DD93097323F00F88BCC /* Icon.png */; };
+		49505E163097324000F88BCC /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDA3097323F00F88BCC /* Style.css */; };
+		49505E173097324000F88BCC /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDA3097323F00F88BCC /* Style.css */; };
+		49505E183097324000F88BCC /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDB3097323F00F88BCC /* Script.js */; };
+		49505E193097324000F88BCC /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDB3097323F00F88BCC /* Script.js */; };
+		49505E1A3097324000F88BCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DDC3097323F00F88BCC /* ViewController.swift */; };
+		49505E1B3097324000F88BCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DDC3097323F00F88BCC /* ViewController.swift */; };
+		49505E1C3097324000F88BCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDD3097324000F88BCC /* Assets.xcassets */; };
+		49505E1D3097324000F88BCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49505DDD3097324000F88BCC /* Assets.xcassets */; };
+		49505E1E3097324000F88BCC /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DDF3097324000F88BCC /* SafariWebExtensionHandler.swift */; };
+		49505E1F3097324000F88BCC /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49505DDF3097324000F88BCC /* SafariWebExtensionHandler.swift */; };
+		49505E353097324000F88BCC /* popup in Resources */ = {isa = PBXBuildFile; fileRef = 49505E313097324000F88BCC /* popup */; };
+		49505E363097324000F88BCC /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 49505E323097324000F88BCC /* styles */; };
+		49505E373097324000F88BCC /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 49505E333097324000F88BCC /* manifest.json */; };
+		49505E383097324000F88BCC /* src in Resources */ = {isa = PBXBuildFile; fileRef = 49505E343097324000F88BCC /* src */; };
+		49505E393097324000F88BCC /* popup in Resources */ = {isa = PBXBuildFile; fileRef = 49505E313097324000F88BCC /* popup */; };
+		49505E3A3097324000F88BCC /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 49505E323097324000F88BCC /* styles */; };
+		49505E3B3097324000F88BCC /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 49505E333097324000F88BCC /* manifest.json */; };
+		49505E3C3097324000F88BCC /* src in Resources */ = {isa = PBXBuildFile; fileRef = 49505E343097324000F88BCC /* src */; };
+		49505EF23097324000F88BCC /* images in Resources */ = {isa = PBXBuildFile; fileRef = 49505EF13097324000F88BCC /* images */; };
+		49505EF33097324000F88BCC /* images in Resources */ = {isa = PBXBuildFile; fileRef = 49505EF13097324000F88BCC /* images */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49505E043097324000F88BCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49505DD13097323F00F88BCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49505E013097324000F88BCC;
+			remoteInfo = "Perch Extension (iOS)";
+		};
+		49505E0E3097324000F88BCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49505DD13097323F00F88BCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49505E0B3097324000F88BCC;
+			remoteInfo = "Perch Extension (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		49505E253097324000F88BCC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				49505E033097324000F88BCC /* Perch Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+		49505E2C3097324000F88BCC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				49505E0D3097324000F88BCC /* Perch Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		49505DD83097323F00F88BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		49505DD93097323F00F88BCC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		49505DDA3097323F00F88BCC /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		49505DDB3097323F00F88BCC /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		49505DDC3097323F00F88BCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49505DDD3097324000F88BCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49505DDF3097324000F88BCC /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		49505DE43097324000F88BCC /* Perch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49505DE73097324000F88BCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49505DE93097324000F88BCC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		49505DEC3097324000F88BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		49505DEF3097324000F88BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49505DF13097324000F88BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49505DF63097324000F88BCC /* Perch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49505DF83097324000F88BCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49505DFB3097324000F88BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49505DFD3097324000F88BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49505E023097324000F88BCC /* Perch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Perch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49505E073097324000F88BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49505E0C3097324000F88BCC /* Perch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Perch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49505E113097324000F88BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49505E313097324000F88BCC /* popup */ = {isa = PBXFileReference; lastKnownFileType = folder; name = popup; path = ../../extension/popup; sourceTree = "<group>"; };
+		49505E323097324000F88BCC /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = styles; path = ../../extension/styles; sourceTree = "<group>"; };
+		49505E333097324000F88BCC /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../extension/manifest.json; sourceTree = "<group>"; };
+		49505E343097324000F88BCC /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; name = src; path = ../../extension/src; sourceTree = "<group>"; };
+		49505EF13097324000F88BCC /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../extension/images; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49505DE13097324000F88BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		49505DF33097324000F88BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		49505DFF3097324000F88BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		49505E093097324000F88BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49505DD03097323F00F88BCC = {
+			isa = PBXGroup;
+			children = (
+				49505DD53097323F00F88BCC /* Shared (App) */,
+				49505DDE3097324000F88BCC /* Shared (Extension) */,
+				49505DE63097324000F88BCC /* iOS (App) */,
+				49505DF73097324000F88BCC /* macOS (App) */,
+				49505E063097324000F88BCC /* iOS (Extension) */,
+				49505E103097324000F88BCC /* macOS (Extension) */,
+				49505DE53097324000F88BCC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49505DD53097323F00F88BCC /* Shared (App) */ = {
+			isa = PBXGroup;
+			children = (
+				49505DDC3097323F00F88BCC /* ViewController.swift */,
+				49505DDD3097324000F88BCC /* Assets.xcassets */,
+				49505DD63097323F00F88BCC /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		49505DD63097323F00F88BCC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49505DD73097323F00F88BCC /* Main.html */,
+				49505DD93097323F00F88BCC /* Icon.png */,
+				49505DDA3097323F00F88BCC /* Style.css */,
+				49505DDB3097323F00F88BCC /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		49505DDE3097324000F88BCC /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				49505E303097324000F88BCC /* Resources */,
+				49505DDF3097324000F88BCC /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		49505DE53097324000F88BCC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49505DE43097324000F88BCC /* Perch.app */,
+				49505DF63097324000F88BCC /* Perch.app */,
+				49505E023097324000F88BCC /* Perch Extension.appex */,
+				49505E0C3097324000F88BCC /* Perch Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49505DE63097324000F88BCC /* iOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				49505DE73097324000F88BCC /* AppDelegate.swift */,
+				49505DE93097324000F88BCC /* SceneDelegate.swift */,
+				49505DEB3097324000F88BCC /* LaunchScreen.storyboard */,
+				49505DEE3097324000F88BCC /* Main.storyboard */,
+				49505DF13097324000F88BCC /* Info.plist */,
+			);
+			path = "iOS (App)";
+			sourceTree = "<group>";
+		};
+		49505DF73097324000F88BCC /* macOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				49505DF83097324000F88BCC /* AppDelegate.swift */,
+				49505DFA3097324000F88BCC /* Main.storyboard */,
+				49505DFD3097324000F88BCC /* Info.plist */,
+			);
+			path = "macOS (App)";
+			sourceTree = "<group>";
+		};
+		49505E063097324000F88BCC /* iOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				49505E073097324000F88BCC /* Info.plist */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		49505E103097324000F88BCC /* macOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				49505E113097324000F88BCC /* Info.plist */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		49505E303097324000F88BCC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49505E313097324000F88BCC /* popup */,
+				49505E323097324000F88BCC /* styles */,
+				49505E333097324000F88BCC /* manifest.json */,
+				49505E343097324000F88BCC /* src */,
+				49505EF13097324000F88BCC /* images */,
+			);
+			name = Resources;
+			path = "Shared (Extension)";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49505DE33097324000F88BCC /* Perch (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49505E263097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch (iOS)" */;
+			buildPhases = (
+				49505DE03097324000F88BCC /* Sources */,
+				49505DE13097324000F88BCC /* Frameworks */,
+				49505DE23097324000F88BCC /* Resources */,
+				49505E253097324000F88BCC /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49505E053097324000F88BCC /* PBXTargetDependency */,
+			);
+			name = "Perch (iOS)";
+			productName = "Perch (iOS)";
+			productReference = 49505DE43097324000F88BCC /* Perch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		49505DF53097324000F88BCC /* Perch (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49505E2D3097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch (macOS)" */;
+			buildPhases = (
+				49505DF23097324000F88BCC /* Sources */,
+				49505DF33097324000F88BCC /* Frameworks */,
+				49505DF43097324000F88BCC /* Resources */,
+				49505E2C3097324000F88BCC /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49505E0F3097324000F88BCC /* PBXTargetDependency */,
+			);
+			name = "Perch (macOS)";
+			productName = "Perch (macOS)";
+			productReference = 49505DF63097324000F88BCC /* Perch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		49505E013097324000F88BCC /* Perch Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49505E223097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch Extension (iOS)" */;
+			buildPhases = (
+				49505DFE3097324000F88BCC /* Sources */,
+				49505DFF3097324000F88BCC /* Frameworks */,
+				49505E003097324000F88BCC /* Resources */,
+			);
+			buildRules = (
+			);
+			name = "Perch Extension (iOS)";
+			productName = "Perch Extension (iOS)";
+			productReference = 49505E023097324000F88BCC /* Perch Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		49505E0B3097324000F88BCC /* Perch Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49505E293097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch Extension (macOS)" */;
+			buildPhases = (
+				49505E083097324000F88BCC /* Sources */,
+				49505E093097324000F88BCC /* Frameworks */,
+				49505E0A3097324000F88BCC /* Resources */,
+			);
+			buildRules = (
+			);
+			name = "Perch Extension (macOS)";
+			productName = "Perch Extension (macOS)";
+			productReference = 49505E0C3097324000F88BCC /* Perch Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49505DD13097323F00F88BCC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					49505DE33097324000F88BCC = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					49505DF53097324000F88BCC = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					49505E013097324000F88BCC = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					49505E0B3097324000F88BCC = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = 49505DD43097323F00F88BCC /* Build configuration list for PBXProject "Perch" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49505DD03097323F00F88BCC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 49505DE53097324000F88BCC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49505DE33097324000F88BCC /* Perch (iOS) */,
+				49505DF53097324000F88BCC /* Perch (macOS) */,
+				49505E013097324000F88BCC /* Perch Extension (iOS) */,
+				49505E0B3097324000F88BCC /* Perch Extension (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49505DE23097324000F88BCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				49505E143097324000F88BCC /* Icon.png in Resources */,
+				49505DED3097324000F88BCC /* LaunchScreen.storyboard in Resources */,
+				49505E123097324000F88BCC /* Main.html in Resources */,
+				49505E183097324000F88BCC /* Script.js in Resources */,
+				49505E1C3097324000F88BCC /* Assets.xcassets in Resources */,
+				49505DF03097324000F88BCC /* Main.storyboard in Resources */,
+				49505E163097324000F88BCC /* Style.css in Resources */,
+			);
+		};
+		49505DF43097324000F88BCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				49505E153097324000F88BCC /* Icon.png in Resources */,
+				49505E173097324000F88BCC /* Style.css in Resources */,
+				49505DFC3097324000F88BCC /* Main.storyboard in Resources */,
+				49505E193097324000F88BCC /* Script.js in Resources */,
+				49505E1D3097324000F88BCC /* Assets.xcassets in Resources */,
+				49505E133097324000F88BCC /* Main.html in Resources */,
+			);
+		};
+		49505E003097324000F88BCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				49505E3A3097324000F88BCC /* styles in Resources */,
+				49505E3B3097324000F88BCC /* manifest.json in Resources */,
+				49505E393097324000F88BCC /* popup in Resources */,
+				49505E3C3097324000F88BCC /* src in Resources */,
+				49505EF33097324000F88BCC /* images in Resources */,
+			);
+		};
+		49505E0A3097324000F88BCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				49505E363097324000F88BCC /* styles in Resources */,
+				49505E373097324000F88BCC /* manifest.json in Resources */,
+				49505E353097324000F88BCC /* popup in Resources */,
+				49505E383097324000F88BCC /* src in Resources */,
+				49505EF23097324000F88BCC /* images in Resources */,
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49505DE03097324000F88BCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				49505E1A3097324000F88BCC /* ViewController.swift in Sources */,
+				49505DE83097324000F88BCC /* AppDelegate.swift in Sources */,
+				49505DEA3097324000F88BCC /* SceneDelegate.swift in Sources */,
+			);
+		};
+		49505DF23097324000F88BCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				49505E1B3097324000F88BCC /* ViewController.swift in Sources */,
+				49505DF93097324000F88BCC /* AppDelegate.swift in Sources */,
+			);
+		};
+		49505DFE3097324000F88BCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				49505E1E3097324000F88BCC /* SafariWebExtensionHandler.swift in Sources */,
+			);
+		};
+		49505E083097324000F88BCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				49505E1F3097324000F88BCC /* SafariWebExtensionHandler.swift in Sources */,
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49505E053097324000F88BCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49505E013097324000F88BCC /* Perch Extension (iOS) */;
+			targetProxy = 49505E043097324000F88BCC /* PBXContainerItemProxy */;
+		};
+		49505E0F3097324000F88BCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49505E0B3097324000F88BCC /* Perch Extension (macOS) */;
+			targetProxy = 49505E0E3097324000F88BCC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		49505DD73097323F00F88BCC /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49505DD83097323F00F88BCC /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		49505DEB3097324000F88BCC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49505DEC3097324000F88BCC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		49505DEE3097324000F88BCC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49505DEF3097324000F88BCC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		49505DFA3097324000F88BCC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49505DFB3097324000F88BCC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		49505E203097324000F88BCC /* Debug configuration for PBXProject "Perch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		49505E213097324000F88BCC /* Release configuration for PBXProject "Perch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		49505E233097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch Extension (iOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Perch Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch.Extension;
+				PRODUCT_NAME = "Perch Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49505E243097324000F88BCC /* Release configuration for PBXNativeTarget "Perch Extension (iOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Perch Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch.Extension;
+				PRODUCT_NAME = "Perch Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49505E273097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch (iOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Perch;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch;
+				PRODUCT_NAME = Perch;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		49505E283097324000F88BCC /* Release configuration for PBXNativeTarget "Perch (iOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Perch;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch;
+				PRODUCT_NAME = Perch;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49505E2A3097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch Extension (macOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Perch Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch.Extension;
+				PRODUCT_NAME = "Perch Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		49505E2B3097324000F88BCC /* Release configuration for PBXNativeTarget "Perch Extension (macOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Perch Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch.Extension;
+				PRODUCT_NAME = "Perch Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		49505E2E3097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch (macOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Perch;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch;
+				PRODUCT_NAME = Perch;
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		49505E2F3097324000F88BCC /* Release configuration for PBXNativeTarget "Perch (macOS)" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Perch;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.emilthaudal.perch;
+				PRODUCT_NAME = Perch;
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49505DD43097323F00F88BCC /* Build configuration list for PBXProject "Perch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49505E203097324000F88BCC /* Debug configuration for PBXProject "Perch" */,
+				49505E213097324000F88BCC /* Release configuration for PBXProject "Perch" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49505E223097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch Extension (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49505E233097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch Extension (iOS)" */,
+				49505E243097324000F88BCC /* Release configuration for PBXNativeTarget "Perch Extension (iOS)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49505E263097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49505E273097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch (iOS)" */,
+				49505E283097324000F88BCC /* Release configuration for PBXNativeTarget "Perch (iOS)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49505E293097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49505E2A3097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch Extension (macOS)" */,
+				49505E2B3097324000F88BCC /* Release configuration for PBXNativeTarget "Perch Extension (macOS)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		49505E2D3097324000F88BCC /* Build configuration list for PBXNativeTarget "Perch (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49505E2E3097324000F88BCC /* Debug configuration for PBXNativeTarget "Perch (macOS)" */,
+				49505E2F3097324000F88BCC /* Release configuration for PBXNativeTarget "Perch (macOS)" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49505DD13097323F00F88BCC /* Project object */;
+	validationLevel = 1;
+}
