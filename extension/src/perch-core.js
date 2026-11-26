@@ -13,10 +13,37 @@
   function focalIdFromUrl(url) {
     try {
       const vars = new URL(url, 'https://x.com').searchParams.get('variables');
-      return vars ? JSON.parse(vars).focalTweetId ?? null : null;
+      if (!vars) return null;
+      const parsed = JSON.parse(vars);
+      return parsed.focalTweetId ?? parsed.focal_tweet_id ?? null;
     } catch {
       return null;
     }
+  }
+
+  // X's responses used camelCase keys (entryId, sortIndex, itemContent) until a
+  // November 2026 redesign moved to snake_case (entry_id, sort_index, and the
+  // item's content under `content`). These helpers read either shape.
+  function idOf(entry) {
+    return entry?.entryId ?? entry?.entry_id;
+  }
+
+  function sortIndexOf(entry) {
+    return entry?.sortIndex ?? entry?.sort_index;
+  }
+
+  function setSortIndex(entry, value) {
+    if ('sort_index' in entry && !('sortIndex' in entry)) entry.sort_index = value;
+    else entry.sortIndex = value;
+  }
+
+  // The item payload of an entry (content.itemContent / content.content) or of a
+  // module item (item.itemContent / item.content).
+  function itemContentOf(holder) {
+    if (!holder) return undefined;
+    if (holder.itemContent) return holder.itemContent;
+    const inner = holder.content;
+    return inner && typeof inner === 'object' && !Array.isArray(inner) && !inner.items ? inner : undefined;
   }
 
   function unwrapTweet(result) {
@@ -25,9 +52,10 @@
 
   function isPromoted(entry) {
     if (!entry || typeof entry !== 'object') return false;
-    if (typeof entry.entryId === 'string' && /(^|-)promoted-/.test(entry.entryId)) return true;
-    const itemContent = entry.content?.itemContent ?? entry.item?.itemContent;
-    if (itemContent?.promotedMetadata) return true;
+    const id = idOf(entry);
+    if (typeof id === 'string' && /(^|-)promoted-/.test(id)) return true;
+    const itemContent = itemContentOf(entry.content) ?? itemContentOf(entry.item);
+    if (itemContent?.promotedMetadata || itemContent?.promoted_metadata) return true;
     // X injects ads into threads as reply modules that hold only a promoted tweet.
     // Dropping just the tweet would leave an empty module behind, so drop the module.
     const items = entry.content?.items;
@@ -42,7 +70,7 @@
       return removed;
     }
     if (!node || typeof node !== 'object') return 0;
-    for (const key of ['entries', 'items', 'moduleItems']) {
+    for (const key of ['entries', 'items', 'moduleItems', 'module_items']) {
       const list = node[key];
       if (!Array.isArray(list)) continue;
       const kept = list.filter((e) => !isPromoted(e));
@@ -56,7 +84,7 @@
   }
 
   function firstTweetOfModule(entry) {
-    return unwrapTweet(entry?.content?.items?.[0]?.item?.itemContent?.tweet_results?.result);
+    return unwrapTweet(itemContentOf(entry?.content?.items?.[0]?.item)?.tweet_results?.result);
   }
 
   function authorOf(tweet) {
@@ -70,8 +98,8 @@
 
     const user = authorOf(tweet);
     const following = Boolean(user?.relationship_perspectives?.following ?? user?.legacy?.following);
-    const blue = Boolean(user?.is_blue_verified);
-    const counts = tweet.legacy ?? {};
+    const blue = Boolean(user?.is_blue_verified ?? user?.verification?.is_blue_verified);
+    const counts = tweet.counts ?? tweet.legacy ?? {};
     const likes = counts.favorite_count || 0;
 
     let score = likes;
@@ -103,18 +131,19 @@
   function sortReplyEntries(entries, settings, focalAuthorId) {
     const positions = [];
     entries.forEach((e, i) => {
-      if (typeof e?.entryId === 'string' && e.entryId.startsWith('conversationthread-')) positions.push(i);
+      const id = idOf(e);
+      if (typeof id === 'string' && id.startsWith('conversationthread-')) positions.push(i);
     });
     if (positions.length < 2) return false;
 
     const modules = positions.map((i) => entries[i]);
-    const sortIndexes = modules.map((m) => m.sortIndex).sort(compareSortIndexDesc);
+    const sortIndexes = modules.map(sortIndexOf).sort(compareSortIndexDesc);
     const ranked = modules
       .map((m, i) => ({ m, i, r: rankReply(m, settings, focalAuthorId) }))
       .sort((a, b) => b.r.tier - a.r.tier || b.r.score - a.r.score || a.i - b.i);
 
     ranked.forEach(({ m }, k) => {
-      m.sortIndex = sortIndexes[k];
+      setSortIndex(m, sortIndexes[k]);
       entries[positions[k]] = m;
     });
     return true;
@@ -126,10 +155,12 @@
     const instructions = json?.data?.threaded_conversation_with_injections_v2?.instructions;
     if (!Array.isArray(instructions)) return false;
 
-    const addEntries = instructions.filter((i) => i?.type === 'TimelineAddEntries' && Array.isArray(i.entries));
+    const addEntries = instructions.filter(
+      (i) => (i?.type ?? i?.__typename) === 'TimelineAddEntries' && Array.isArray(i.entries),
+    );
     for (const instr of addEntries) {
-      const focal = instr.entries.find((e) => e?.entryId === `tweet-${focalId}`);
-      const id = authorOf(unwrapTweet(focal?.content?.itemContent?.tweet_results?.result))?.rest_id;
+      const focal = instr.entries.find((e) => idOf(e) === `tweet-${focalId}`);
+      const id = authorOf(unwrapTweet(itemContentOf(focal?.content)?.tweet_results?.result))?.rest_id;
       if (id && focalId) focalAuthors.set(focalId, id);
     }
     const focalAuthorId = focalAuthors.get(focalId) ?? null;

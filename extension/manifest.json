@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Perch",
   "description": "A calmer X: replies ranked by likes, no ads, a Threads-style layout.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "permissions": ["storage"],
   "icons": {
     "48": "images/icon-48.png",

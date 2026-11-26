@@ -1,10 +1,12 @@
 /*
  * Perch: a calmer X. Everything is scoped to html.perch-style so the popup toggle
- * can turn it off. X's class names are generated and change often, so these rules
- * target data-testid, role and href, plus classes content.js adds:
- *   .perch-solid   a translucent sticky header, made solid
- *   .perch-hidden  a floating button in the bottom-right corner
+ * can turn it off. X's class names are Tailwind utilities that change often, so
+ * these rules target element names, role, aria-label, href and data-* attributes,
+ * plus X's own CSS variables, and these flags content.js sets on <html>:
  *   html.perch-home / html.perch-hide-composer  route and setting flags
+ *
+ * Selectors were measured on x.com after its November 2026 redesign, which
+ * dropped nearly every data-testid the earlier version relied on.
  */
 
 html.perch-style {
@@ -15,75 +17,69 @@ html.perch-style {
   --perch-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-html.perch-style body,
-html.perch-style [data-testid="primaryColumn"] {
+html.perch-style body {
   font-family: var(--perch-font) !important;
 }
 
 /* ---------- Clutter ---------- */
 
-/* Right sidebar: trends, "Who to follow", Premium upsells, Grok. */
-html.perch-style [data-testid="sidebarColumn"] {
+/* Right sidebar: search, Premium, news, trends, "Who to follow". It is the
+   <aside> beside <main>. */
+html.perch-style div:has(> main) > aside {
   display: none !important;
 }
 
-/* Left nav entries nobody here asked for. */
-html.perch-style header[role="banner"] a[href="/i/grok"],
-html.perch-style header[role="banner"] a[href="/i/premium_sign_up"],
-html.perch-style header[role="banner"] a[href="/i/verified-orgs-signup"],
-html.perch-style header[role="banner"] a[href="/jobs"],
-html.perch-style header[role="banner"] a[href$="/communities"],
-html.perch-style header[role="banner"] a[href="/i/jf/creators/studio"],
-html.perch-style header[role="banner"] a[data-testid="premium-signup-tab"],
-html.perch-style header[role="banner"] a[data-testid="SideNav_NewTweet_Button"] {
+/* Left nav entries nobody here asked for, and the big Post button. */
+html.perch-style nav[aria-label="Primary"] a[href="/i/grok"],
+html.perch-style nav[aria-label="Primary"] a[href="/i/premium_sign_up"],
+html.perch-style nav[aria-label="Primary"] a[href="/i/verified-orgs-signup"],
+html.perch-style nav[aria-label="Primary"] a[href="/jobs"],
+html.perch-style nav[aria-label="Primary"] a[href$="/communities"],
+html.perch-style nav[aria-label="Primary"] a[href="/i/jf/creators/studio"],
+html.perch-style div:has(> a#sidebar-compose-post) {
   display: none !important;
 }
 
 /* Grok buttons on posts, and the views and bookmark buttons in the action row. */
 html.perch-style article button[aria-label*="Grok"],
-html.perch-style article [role="group"] > div:has(> a[href$="/analytics"]),
-html.perch-style article [data-testid="bookmark"],
-html.perch-style article [data-testid="removeBookmark"] {
+html.perch-style article span:has(> button[aria-label="Explain this post"]),
+html.perch-style article [role="group"] > div:has(> a[aria-label="View count"]),
+html.perch-style article [role="group"] div:has(> [data-engagement-action="bookmark"]) {
   display: none !important;
 }
 
-/* Inline "Subscribe to Premium" style cells. */
-html.perch-style [data-testid="cellInnerDiv"]:has(a[href="/i/premium_sign_up"]),
-html.perch-style [data-testid="cellInnerDiv"]:has(a[href="/i/verified-choose"]) {
+/* Inline "Subscribe to Premium" style cells in a timeline. */
+html.perch-style main li:has(a[href="/i/premium_sign_up"]),
+html.perch-style main li:has(a[href="/i/verified-choose"]) {
   display: none !important;
 }
 
-/* Floating Grok and Chat bubbles. content.js finds them by position; the test ids
-   are a second net. */
-html.perch-style .perch-hidden,
-html.perch-style [data-testid="GrokDrawer"],
-html.perch-style [data-testid="chat-drawer-root"],
-html.perch-style [data-testid="DMDrawer"] {
+/* Floating Grok and Chat bubbles in the bottom-right corner (X's "dock"). */
+html.perch-style [data-slot="xds-dock"] {
   display: none !important;
 }
 
-/* The "What's happening?" composer on the home timeline. content.js tags its
-   outermost wrapper, since the composer has no stable id of its own. */
-html.perch-style.perch-home.perch-hide-composer .perch-composer {
+/* The "What's happening?" composer on the home timeline. */
+html.perch-style.perch-home.perch-hide-composer main [data-media-upload-dropzone] {
   display: none !important;
 }
 
 /* ---------- The Perch bird instead of the X logo ---------- */
 
 /* content.js sets --perch-logo to the icon as a data: URL. */
-html.perch-style header[role="banner"] h1 a[href="/home"] svg,
 html.perch-style a[aria-label="X"][href="/home"] svg {
   visibility: hidden;
 }
 
-html.perch-style header[role="banner"] h1 a[href="/home"] > div,
-html.perch-style a[aria-label="X"][href="/home"] > div {
+html.perch-style a[aria-label="X"][href="/home"] {
   background: var(--perch-logo) center / 32px 32px no-repeat;
 }
 
 /* ---------- Header: solid instead of see-through ---------- */
 
-html.perch-style .perch-solid {
+/* The sticky bar at the top of the column (tabs, or "← Post") blurs what
+   scrolls under it through a translucent layer behind its content. */
+html.perch-style header[data-page-header] > div[aria-hidden="true"] {
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   background-color: var(--perch-bg, Canvas) !important;
@@ -92,122 +88,55 @@ html.perch-style .perch-solid {
 /* ---------- Layout: icon rail beside a dead-center reading column ---------- */
 
 /*
- * X's layout is a centered flex row: header (nav) + main. The nav is squeezed
- * into an icon rail, and main gets a right margin the width of the rail, so the
+ * X's layout is a centered flex row: the nav rail, then a grid holding <main>
+ * and the <aside> sidebar. The rail has a built-in 72px collapsed state, driven
+ * by --x-sidebar-open on the rail itself. With the sidebar hidden, the grid
+ * shrinks to the column and gets a right margin the width of the rail, so the
  * row is symmetric and the column sits exactly in the middle of the window.
  *
- * Nav structure (measured on x.com, Nov 2026):
- *   header > div > div(position: fixed) > div > div(nav + account switcher)
+ * Structure (measured on x.com, Nov 2026):
+ *   div(flex, justify-center)
+ *     div(hidden sm:block) > div(sticky rail) > div[data-rail-overflow] > nav[aria-label=Primary]
+ *     div(grid) > main + aside
  * Desktop widths only; the phone layout has no side nav.
  */
 @media (min-width: 1000px) {
-  html.perch-style div:has(> header[role="banner"]):has(> main[role="main"]) {
-    justify-content: center !important;
+  html.perch-style div:has(> div[data-rail-overflow]) {
+    --x-sidebar-open: 0 !important;
   }
 
-  html.perch-style header[role="banner"],
-  html.perch-style header[role="banner"] > div,
-  html.perch-style header[role="banner"] > div > div,
-  html.perch-style header[role="banner"] > div > div > div,
-  html.perch-style header[role="banner"] > div > div > div > div,
-  html.perch-style header[role="banner"] nav {
-    width: var(--perch-rail) !important;
-    min-width: 0 !important;
-    flex-grow: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    align-items: center !important;
-  }
-
-  /* Icons only: hide nav labels and the name next to your avatar. */
-  html.perch-style header[role="banner"] nav a div[dir="ltr"],
-  html.perch-style [data-testid="SideNav_AccountSwitcher_Button"] > div:not(:first-child) {
-    display: none !important;
-  }
-
-  /* Links and the "More" button (a <button>) center their icon in the rail. */
-  html.perch-style header[role="banner"] nav > a,
-  html.perch-style header[role="banner"] nav > button {
-    align-items: center !important;
-    width: var(--perch-rail) !important;
-  }
-
-  html.perch-style header[role="banner"] nav > a > div,
-  html.perch-style header[role="banner"] nav > button > div {
-    align-self: center !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  html.perch-style header[role="banner"] nav > button div[dir="ltr"] {
-    display: none !important;
-  }
-
-  html.perch-style main[role="main"] {
-    flex-grow: 0 !important;
-    width: var(--perch-column) !important;
+  html.perch-style div:has(> main):has(> aside) {
+    --x-main-column-width: var(--perch-column) !important;
+    flex: 0 0 auto !important;
+    grid-template-columns: var(--perch-column) !important;
     margin-right: var(--perch-rail) !important;
   }
-
-  html.perch-style main[role="main"] > div,
-  html.perch-style main[role="main"] > div > div {
-    width: 100% !important;
-    justify-content: center !important;
-  }
 }
 
-/* content.js tags the home timeline's 600px-capped wrapper, so posts use the
-   full column like they do in a thread. */
-html.perch-style .perch-full {
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-html.perch-style [data-testid="primaryColumn"] {
-  max-width: var(--perch-column) !important;
-  width: 100% !important;
-  border-left-color: transparent !important;
-  border-right-color: transparent !important;
+/* Timelines cap their posts at 600px inside the column; use the full width. */
+html.perch-style main {
+  --x-timeline-max-width: none;
 }
 
 /* ---------- Tabs: a quiet underline ---------- */
 
-/*
- * X draws a 4px bright-blue bar under the selected tab:
- *   [role=tab] > div > div[dir] > div
- * Make it a 2px line in the label's own text color (currentColor follows X's
- * light, dim and dark themes). It mounts fresh on every tab switch and is never
- * interrupted, so a one-shot keyframe grows it in from the center.
- */
-html.perch-style [role="tablist"] [role="tab"] > div > div[dir] > div {
+/* X draws a 3px bar under the selected tab; make it a 2px line. X shows and
+   slides it itself, so Perch only changes its weight. */
+html.perch-style [role="tablist"] [role="tab"] > [data-tab-underline] {
   height: 2px !important;
-  background-color: currentColor !important;
-  border-radius: 2px !important;
-  transform-origin: center;
-  animation: perch-tab-in 200ms var(--perch-ease-out);
-}
-
-@keyframes perch-tab-in {
-  from {
-    transform: scaleX(0.6);
-    opacity: 0;
-  }
 }
 
 /* ---------- Press feedback ---------- */
 
 /* Pressable things scale down slightly, so the page feels like it heard you. */
-html.perch-style header[role="banner"] nav > a > div,
-html.perch-style header[role="banner"] nav > button > div,
+html.perch-style nav[aria-label="Primary"] > a > span,
+html.perch-style nav[aria-label="Primary"] > button > span,
 html.perch-style article [role="group"] button {
   transition: transform 160ms var(--perch-ease-out);
 }
 
-html.perch-style header[role="banner"] nav > a:active > div,
-html.perch-style header[role="banner"] nav > button:active > div {
+html.perch-style nav[aria-label="Primary"] > a:active > span,
+html.perch-style nav[aria-label="Primary"] > button:active > span {
   transform: scale(0.96);
 }
 
@@ -217,24 +146,15 @@ html.perch-style article [role="group"] button:active {
 
 /* ---------- Posts ---------- */
 
-html.perch-style [data-testid="tweetText"] {
+/* Post text: the block with a lang attribute. */
+html.perch-style article div[dir="auto"][lang] {
   font-size: 15.5px !important;
   line-height: 1.45 !important;
   letter-spacing: -0.005em;
 }
 
-/* Author line: name in bold, handle and time quieter. */
-html.perch-style [data-testid="User-Name"] a[href^="/"] span {
-  font-weight: 600;
-}
-
-html.perch-style [data-testid="User-Name"] time,
-html.perch-style [data-testid="User-Name"] a[tabindex="-1"] span {
-  opacity: 0.7;
-}
-
 /* Blue checks stay visible but stop shouting. */
-html.perch-style [data-testid="icon-verified"] {
+html.perch-style svg[aria-label="Verified account"] {
   opacity: 0.35;
   filter: grayscale(1);
 }
@@ -274,24 +194,12 @@ html.perch-style article [role="group"] span {
   font-size: 12.5px !important;
 }
 
-/* Softer media corners. */
-html.perch-style article [data-testid="tweetPhoto"],
-html.perch-style article [data-testid="videoComponent"],
-html.perch-style article [data-testid="card.wrapper"] {
-  border-radius: 12px !important;
-  overflow: hidden;
-}
-
 /* ---------- Reduced motion ---------- */
 
 /* Keep the opacity fades that aid comprehension; drop movement and scaling. */
 @media (prefers-reduced-motion: reduce) {
-  html.perch-style [role="tablist"] [role="tab"] > div > div[dir] > div {
-    animation: none !important;
-  }
-
-  html.perch-style header[role="banner"] nav > a > div,
-  html.perch-style header[role="banner"] nav > button > div,
+  html.perch-style nav[aria-label="Primary"] > a > span,
+  html.perch-style nav[aria-label="Primary"] > button > span,
   html.perch-style article [role="group"] button {
     transform: none !important;
     transition: opacity 150ms ease !important;

@@ -11,7 +11,7 @@ A Safari extension (macOS and iOS) for a calmer X:
 
 `extension/src/inject.js` runs in the page's own JavaScript world and wraps `fetch` and `XMLHttpRequest`. X's GraphQL responses (`/i/api/graphql/<hash>/<Operation>`) go through `extension/src/perch-core.js`, which strips promoted entries and, for `TweetDetail`, reorders the reply modules. X orders entries by their `sortIndex`, so the existing indexes are reassigned in Perch's order.
 
-Styling lives in `extension/styles/perch.css`. It targets `data-testid`, `role` and `href`, not X's generated class names.
+Styling lives in `extension/styles/perch.css`. It targets element names, `role`, `aria-label`, `href`, `data-*` attributes and X's own CSS variables, not X's generated Tailwind class names.
 
 ## Develop
 
