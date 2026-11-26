@@ -35,10 +35,12 @@
 
   // ---------- Following tab ----------
 
-  // Matching by position rather than label keeps it working in every UI language.
-  // X can re-select "For you" while it loads, so retry on a timer for a while,
-  // then leave the tabs alone so a manual switch is respected.
+  // Matching by data-pinned-timeline (or position, as a fallback) rather than
+  // label keeps it working in every UI language. X can re-select "For you" after
+  // Perch switched, while it loads, so keep checking for a few seconds after
+  // arriving, then leave the tabs alone so a manual switch is respected.
   const TAB_RETRY_MS = 500;
+  const TAB_WATCH_MS = 5000;
   const TAB_GIVE_UP_MS = 10000;
   const tab = { since: 0, lastClick: 0, done: false };
 
@@ -59,14 +61,18 @@
     }
 
     const tabs = document.querySelectorAll('[role="tablist"] [role="tab"]');
-    if (tabs.length >= 2 && tabs[1].getAttribute('aria-selected') === 'true') {
+    const following =
+      document.querySelector('[role="tablist"] [role="tab"][data-pinned-timeline="following"]') ??
+      (tabs.length >= 2 ? tabs[1] : null);
+    const selected = following?.getAttribute('aria-selected') === 'true';
+    if (selected && now - tab.since > TAB_WATCH_MS) {
       tab.done = true;
       console.info('[perch] on Following');
       return;
     }
-    if (tabs.length >= 2 && now - tab.lastClick >= TAB_RETRY_MS) {
+    if (following && !selected && now - tab.lastClick >= TAB_RETRY_MS) {
       tab.lastClick = now;
-      tabs[1].click();
+      following.click();
     }
     setTimeout(schedule, TAB_RETRY_MS);
   }
@@ -145,74 +151,6 @@
     if (!varsStyle.isConnected) writeVars();
   }
 
-  function hasBackdrop(el) {
-    const cs = getComputedStyle(el);
-    const value = cs.backdropFilter || cs.webkitBackdropFilter;
-    return Boolean(value) && value !== 'none';
-  }
-
-  // The sticky bar at the top of the column (tabs, or "← Post") blurs whatever
-  // scrolls under it. Where the blur lives differs per page: on the home
-  // timeline it's a background layer beside the tabs (a child of the sticky
-  // element), on a thread it's an ancestor of the title. Check both.
-  function solidHeader() {
-    const column = document.querySelector('[data-testid="primaryColumn"]');
-    if (!column) return;
-    const rect = column.getBoundingClientRect();
-    let el = document.elementFromPoint(rect.left + rect.width / 2, 8);
-    for (; el && el !== column && column.contains(el); el = el.parentElement) {
-      const layers = getComputedStyle(el).position === 'sticky' ? [el, ...el.children] : [el];
-      for (const layer of layers) {
-        if (!layer.classList.contains('perch-solid') && hasBackdrop(layer)) layer.classList.add('perch-solid');
-      }
-    }
-  }
-
-  // The home timeline wraps its posts in a box capped at 600px and centered,
-  // so posts sit narrower there than in a thread. Walk up from a post to the
-  // column and tag any ancestor with a pixel max-width, so CSS can lift it.
-  function uncapTimeline() {
-    const column = document.querySelector('[data-testid="primaryColumn"]');
-    const cell = column?.querySelector('[data-testid="cellInnerDiv"]');
-    for (let el = cell; el && el !== column; el = el.parentElement) {
-      if (el.classList.contains('perch-full')) return;
-      if (getComputedStyle(el).maxWidth.endsWith('px')) el.classList.add('perch-full');
-    }
-  }
-
-  // Tag the home composer's outermost wrapper: the ancestor of its Post button
-  // whose parent is the timeline container (the first one holding post cells).
-  function tagComposer() {
-    if (location.pathname !== '/home' || document.querySelector('.perch-composer')) return;
-    const button = document.querySelector('[data-testid="primaryColumn"] [data-testid="tweetButtonInline"]');
-    for (let el = button; el?.parentElement; el = el.parentElement) {
-      if (el.parentElement.querySelector('[data-testid="cellInnerDiv"]')) {
-        el.classList.add('perch-composer');
-        return;
-      }
-    }
-  }
-
-  // Grok and Chat float in the bottom-right corner. Hide the outermost small
-  // fixed-position element found there, unless it belongs to the column or nav.
-  function hideFloatingButtons() {
-    if (window.innerWidth < 700) return; // phone layout: bottom-right is the compose button
-    for (const offset of [40, 110, 180]) {
-      let el = document.elementFromPoint(window.innerWidth - 40, window.innerHeight - offset);
-      if (!el || el.closest('[data-testid="primaryColumn"], header[role="banner"]')) continue;
-      let target = null;
-      for (; el && el !== document.body; el = el.parentElement) {
-        if (getComputedStyle(el).position !== 'fixed') continue;
-        const r = el.getBoundingClientRect();
-        if (r.width < 320 && r.height < 400) target = el;
-      }
-      if (target && !target.classList.contains('perch-hidden')) {
-        target.classList.add('perch-hidden');
-        console.info('[perch] hid floating button', target.getAttribute('data-testid') || target.getAttribute('aria-label') || '');
-      }
-    }
-  }
-
   // ---------- Loop ----------
 
   // A short timer, not requestAnimationFrame: rAF callbacks scheduled from this
@@ -243,10 +181,6 @@
     replaceFavicon();
     retitle();
     syncBackground();
-    solidHeader();
-    uncapTimeline();
-    tagComposer();
-    hideFloatingButtons();
   }
 
   // ---------- Start ----------

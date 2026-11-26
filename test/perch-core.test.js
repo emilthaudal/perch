@@ -194,6 +194,61 @@ test('home timeline ads are removed, other operations are untouched by sorting',
   assert.deepEqual(home.data.home.home_timeline_urt.instructions[0].entries.map((e) => e.entryId), ['tweet-1']);
 });
 
+test('snake_case responses (Nov 2026 redesign): ads removed and replies sorted', () => {
+  const snakeTweet = (id, user, counts = {}) => ({
+    __typename: 'Tweet',
+    rest_id: id,
+    core: {
+      user_results: {
+        result: {
+          rest_id: user.id,
+          verification: { is_blue_verified: Boolean(user.blue) },
+          relationship_perspectives: { following: Boolean(user.following) },
+        },
+      },
+    },
+    counts: { favorite_count: 0, reply_count: 0, retweet_count: 0, quote_count: 0, ...counts },
+    legacy: { lang: 'en' },
+  });
+  const snakeReply = (id, sortIndex, user, counts) => ({
+    entry_id: `conversationthread-${id}`,
+    sort_index: sortIndex,
+    content: {
+      __typename: 'TimelineTimelineModule',
+      items: [{ entry_id: `conversationthread-${id}-tweet-${id}`, item: { content: { tweet_results: { result: snakeTweet(id, user, counts) } } } }],
+    },
+  });
+  const entries = [
+    { entry_id: `tweet-${FOCAL_ID}`, sort_index: '9999', content: { content: { tweet_results: { result: snakeTweet(FOCAL_ID, { id: OP_ID }) } } } },
+    snakeReply('blue', '900', { id: 'b', blue: true }, { favorite_count: 20 }),
+    snakeReply('plain', '800', { id: 'p' }, { favorite_count: 10 }),
+    snakeReply('op', '700', { id: OP_ID }),
+    {
+      entry_id: 'promoted-tweet-7-abc',
+      sort_index: '650',
+      content: { __typename: 'TimelineTimelineItem', content: { promoted_metadata: {}, tweet_results: {} } },
+    },
+    { entry_id: 'tweet-8', sort_index: '600', content: { content: { promoted_metadata: {}, tweet_results: {} } } },
+  ];
+  const json = {
+    data: { threaded_conversation_with_injections_v2: { instructions: [{ __typename: 'TimelineAddEntries', entries }] } },
+  };
+  const stats = {};
+  assert.equal(core.transform(json, URL, DEFAULTS, new Map(), stats), true);
+  assert.equal(stats.adsRemoved, 2);
+  const out = json.data.threaded_conversation_with_injections_v2.instructions[0].entries;
+  const replies = out.filter((e) => e.entry_id.startsWith('conversationthread-'));
+  // blue: 20/3 ≈ 6.7 ranks below plain (10).
+  assert.deepEqual(replies.map((e) => e.entry_id.split('-')[1]), ['op', 'plain', 'blue']);
+  assert.deepEqual(replies.map((e) => e.sort_index), ['900', '800', '700']);
+  assert.equal(replies.some((e) => 'sortIndex' in e), false);
+});
+
+test('focal tweet id is read from snake_case variables too', () => {
+  const url = `https://api.x.com/graphql/x/TweetDetail?variables=${encodeURIComponent(JSON.stringify({ focal_tweet_id: '42' }))}`;
+  assert.equal(core.focalIdFromUrl(url), '42');
+});
+
 test('non-GraphQL URLs are ignored', () => {
   assert.equal(core.operationName('https://x.com/home'), null);
   assert.equal(core.transform({ entries: [{ entryId: 'promoted-tweet-1' }] }, 'https://x.com/home', DEFAULTS, new Map()), false);
